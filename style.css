@@ -392,3 +392,251 @@ footer>p {
         grid-column: auto;
     }
 }
+
+
+/* ===== LUNA UI UPGRADE ===== */
+
+body {
+    background: #0d0d0c;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(13, 13, 12, 0.92);
+    backdrop-filter: blur(15px);
+    height: 80px;
+}
+
+.logo {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+}
+
+.nav-links a {
+    position: relative;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-button {
+    border-radius: 2px;
+}
+
+.hero {
+    min-height: 680px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.hero-content {
+    animation: fadeUp 0.8s ease both;
+}
+
+.hero-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image img {
+    transition: transform 0.7s ease;
+}
+
+.hero-image:hover img {
+    transform: scale(1.04);
+}
+
+.hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+            transparent 60%,
+            rgba(214, 168, 92, 0.12));
+    pointer-events: none;
+}
+
+.hero h1 {
+    letter-spacing: -2px;
+}
+
+.eyebrow {
+    font-weight: 600;
+}
+
+.primary-button,
+.secondary-button,
+.nav-button {
+    transition: all 0.3s ease;
+}
+
+.menu-section {
+    background: #151513;
+}
+
+.section-heading h2 {
+    margin-bottom: 10px;
+}
+
+.menu-grid {
+    gap: 30px;
+}
+
+.menu-card {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 5px;
+}
+
+.menu-card img {
+    transition: transform 0.6s ease;
+}
+
+.menu-card:hover img {
+    transform: scale(1.05);
+}
+
+.menu-card-content {
+    position: relative;
+}
+
+.menu-card-content span {
+    display: inline-block;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.about-section {
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+.about-image {
+    overflow: hidden;
+}
+
+.about-image img {
+    transition: transform 0.6s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.03);
+}
+
+.reservation-form input,
+.reservation-form select {
+    border-radius: 3px;
+    transition: border 0.3s ease;
+}
+
+.reservation-form button {
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.menu-toggle {
+    display: none;
+    background: transparent;
+    border: none;
+    color: var(--light);
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Animation */
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Navigation */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        height: 70px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: flex;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 25px;
+        background: #151513;
+        flex-direction: column;
+        gap: 22px;
+        border-bottom: 1px solid rgba(214, 168, 92, 0.2);
+
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: 0.3s ease;
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .nav-button {
+        padding: 10px 13px;
+        font-size: 12px;
+    }
+
+    .hero {
+        padding-top: 60px;
+        min-height: auto;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .navbar {
+        padding: 0 4%;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        text-align: center;
+    }
+}
