@@ -1,0 +1,9 @@
+const reservationForm=document.getElementById("reservation-form");
+
+reservationForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        alert("Your reservation request has been received! Thank you.");
+
+        reservationForm.reset();
+    });
