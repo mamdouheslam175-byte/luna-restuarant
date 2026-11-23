@@ -1,207 +1,250 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Luna Restaurant</title>
-
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" id="meta-description"
+        content="Luna Restaurant – unforgettable flavors. Browse the menu and book your table.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
+<body>
 
-<header class="navbar">
-    <a href="#home" class="logo">LUNA<span>.</span></a>
+    <!-- Navbar -->
+    <header class="navbar">
+        <a href="#home" class="logo">LUNA<span>.</span></a>
 
-    <nav class="nav-links" id="nav-links">
-        <a href="#home">Home</a>
-        <a href="#menu">Menu</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
+        <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+            <a href="#home" data-i18n="nav.home">Home</a>
+            <a href="#menu" data-i18n="nav.menu">Menu</a>
+            <a href="#about" data-i18n="nav.about">About</a>
+            <a href="#contact" data-i18n="nav.contact">Contact</a>
+            <a href="#reservation" class="nav-link-book" data-i18n="nav.book">Book a Table</a>
+        </nav>
 
-    <a href="#reservation" class="nav-button">
-        Book a Table
-    </a>
+        <div class="nav-actions">
+            <button type="button" class="icon-button" id="lang-toggle">العربية</button>
 
-    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
-        ☰
-    </button>
-</header>
+            <button type="button" class="icon-button cart-button" id="cart-button" data-i18n-aria="cart.open"
+                aria-label="Open cart">
+                <span aria-hidden="true">🛒</span>
+                <span class="cart-count" id="cart-count" hidden>0</span>
+            </button>
 
+            <a href="#reservation" class="nav-button" data-i18n="nav.book">Book a Table</a>
 
-
-<!-- Hero Section -->
-<section class="hero" id="home">
-
-    <div class="hero-content">
-
-        <p class="eyebrow">
-            A TASTE OF SOMETHING SPECIAL
-        </p>
-
-        <h1>
-            Where flavor<br>
-            meets <span>elegance.</span>
-        </h1>
-
-        <p class="hero-description">
-            Discover a world of unforgettable flavors,
-            crafted with passion and served with love.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#menu" class="primary-button">
-                Explore Menu
-            </a>
-
-            <a href="#reservation" class="secondary-button">
-                Reserve a Table
-            </a>
+            <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation"
+                aria-expanded="false" aria-controls="nav-links">☰</button>
         </div>
+    </header>
 
-    </div>
+    <main>
 
-    <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=1200&q=85"
-            alt="Delicious restaurant food">
-    </div>
+        <!-- Hero -->
+        <section class="hero" id="home">
 
-</section>
+            <div class="hero-content">
+                <p class="eyebrow" data-i18n="hero.eyebrow">A TASTE OF SOMETHING SPECIAL</p>
 
+                <h1 data-i18n-html="hero.title">
+                    Where flavor<br>
+                    meets <span>elegance.</span>
+                </h1>
 
-<!-- Menu Section -->
-<section class="menu-section" id="menu">
+                <p class="hero-description" data-i18n="hero.desc">
+                    Discover a world of unforgettable flavors,
+                    crafted with passion and served with love.
+                </p>
 
-    <div class="section-heading">
-        <p class="eyebrow">OUR SPECIALTIES</p>
-        <h2>Discover Our Menu</h2>
-        <p>Carefully crafted dishes made with fresh ingredients.</p>
-    </div>
-
-    <div class="menu-grid">
-
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=80"
-                alt="Pasta">
-            <div class="menu-card-content">
-                <h3>Italian Pasta</h3>
-                <p>Fresh pasta with a rich creamy sauce.</p>
-                <span>$14</span>
+                <div class="hero-buttons">
+                    <a href="#menu" class="primary-button" data-i18n="hero.explore">Explore Menu</a>
+                    <a href="#reservation" class="secondary-button" data-i18n="hero.reserve">Reserve a Table</a>
+                </div>
             </div>
-        </div>
 
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80"
-                alt="Burger">
-            <div class="menu-card-content">
-                <h3>Classic Burger</h3>
-                <p>Premium beef with fresh ingredients.</p>
-                <span>$12</span>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1546549032-9571cd6b27df?auto=format&fit=crop&w=1200&q=85"
+                    alt="Delicious restaurant food" fetchpriority="high">
             </div>
-        </div>
 
-        <div class="menu-card">
-            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80"
-                alt="Pizza">
-            <div class="menu-card-content">
-                <h3>Italian Pizza</h3>
-                <p>Authentic pizza baked to perfection.</p>
-                <span>$16</span>
+        </section>
+
+
+        <!-- Menu -->
+        <section class="menu-section" id="menu">
+
+            <div class="section-heading">
+                <p class="eyebrow" data-i18n="menu.eyebrow">OUR SPECIALTIES</p>
+                <h2 data-i18n="menu.title">Discover Our Menu</h2>
+                <p class="section-sub" data-i18n="menu.sub">Carefully crafted dishes made with fresh ingredients.</p>
             </div>
+
+            <div class="menu-search">
+
+                <input type="search" id="menu-search" placeholder="Search dishes..." autocomplete="off">
+            </div>
+
+            <div class="menu-tabs" id="menu-tabs"></div>
+
+            <div class="menu-grid" id="menu-grid"></div>
+
+        </section>
+
+
+        <!-- About -->
+        <section class="about-section" id="about">
+
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
+                    alt="Restaurant interior" loading="lazy">
+            </div>
+
+            <div class="about-content">
+                <p class="eyebrow" data-i18n="about.eyebrow">OUR STORY</p>
+
+                <h2 data-i18n-html="about.title">A passion for<br>great food.</h2>
+
+                <p data-i18n="about.text">
+                    At Luna, we believe that every meal should be
+                    an experience. Our chefs combine fresh ingredients,
+                    creativity, and passion to bring you unforgettable dishes.
+                </p>
+
+                <a href="#reservation" class="primary-button" data-i18n="about.cta">Join Us</a>
+            </div>
+
+        </section>
+
+
+        <!-- Reservation -->
+        <section class="reservation-section" id="reservation">
+
+            <div class="section-heading">
+                <p class="eyebrow" data-i18n="res.eyebrow">YOUR TABLE AWAITS</p>
+                <h2 data-i18n="res.title">Make a Reservation</h2>
+                <p class="section-sub" data-i18n="res.sub">Reserve your place for an unforgettable dining experience.
+                </p>
+            </div>
+
+            <form class="reservation-form" id="reservation-form">
+
+                <label class="field">
+                    <span data-i18n="res.name">Your name</span>
+                    <input type="text" name="name" autocomplete="name" required>
+                </label>
+
+                <label class="field">
+                    <span data-i18n="res.phone">Phone number</span>
+                    <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]{7,}"
+                        required>
+                </label>
+
+                <label class="field full">
+                    <span data-i18n="res.email">Email (optional)</span>
+                    <input type="email" name="email" autocomplete="email">
+                </label>
+
+                <label class="field">
+                    <span data-i18n="res.date">Date</span>
+                    <input type="date" name="date" id="res-date" required>
+                </label>
+
+                <label class="field">
+                    <span data-i18n="res.time">Time</span>
+                    <select name="time" id="res-time" required></select>
+                </label>
+
+                <label class="field full">
+                    <span data-i18n="res.guests">Number of guests</span>
+                    <select name="guests" id="res-guests" required></select>
+                </label>
+
+                <label class="field full">
+                    <span data-i18n="res.notes">Special requests (optional)</span>
+                    <textarea name="notes" rows="3" maxlength="500"></textarea>
+                </label>
+
+                <button type="submit" class="primary-button" id="res-submit" data-i18n="res.submit">Book Now</button>
+
+                <p class="form-status" id="res-status" role="status" aria-live="polite"></p>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <a href="#home" class="logo">LUNA<span>.</span></a>
+
+        <p data-i18n="footer.tagline">Crafting unforgettable moments, one dish at a time.</p>
+
+        <ul class="footer-contact" id="footer-contact"></ul>
+
+        <p class="copyright" id="copyright">© 2026 Luna Restaurant. All rights reserved.</p>
+    </footer>
+
+
+    <!-- Cart drawer -->
+    <div class="cart-overlay" id="cart-overlay"></div>
+
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+
+        <div class="cart-header">
+            <h2 id="cart-title" data-i18n="cart.title">Your Order</h2>
+            <button type="button" class="icon-button" id="cart-close" data-i18n-aria="cart.close"
+                aria-label="Close cart">✕</button>
         </div>
 
-    </div>
+        <ul class="cart-items" id="cart-items"></ul>
 
-</section>
+        <form class="cart-footer" id="checkout-form">
 
+            <div class="cart-total">
+                <span data-i18n="cart.total">Total</span>
+                <strong id="cart-total">$0</strong>
+            </div>
 
-<!-- About Section -->
-<section class="about-section" id="about">
+            <label class="field">
+                <span data-i18n="cart.name">Your name</span>
+                <input type="text" name="name" autocomplete="name" required>
+            </label>
 
-    <div class="about-image">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
-            alt="Restaurant interior">
-    </div>
+            <label class="field">
+                <span data-i18n="cart.phone">Phone number</span>
+                <input type="tel" name="phone" autocomplete="tel" inputmode="tel" pattern="[0-9+\s\-()]{7,}" required>
+            </label>
 
-    <div class="about-content">
-        <p class="eyebrow">OUR STORY</p>
+            <label class="field">
+                <span data-i18n="cart.note">Address or table number</span>
+                <input type="text" name="note" maxlength="200">
+            </label>
 
-        <h2>A passion for<br>great food.</h2>
+            <button type="submit" class="primary-button" id="checkout-button" data-i18n="cart.checkout">Order via
+                WhatsApp</button>
 
-        <p>
-            At Luna, we believe that every meal should be
-            an experience. Our chefs combine fresh ingredients,
-            creativity, and passion to bring you unforgettable dishes.
-        </p>
+            <p class="form-status" id="cart-status" role="status" aria-live="polite"></p>
 
-        <a href="#reservation" class="primary-button">
-            Join Us
-        </a>
-    </div>
+            <button type="button" class="link-button" id="cart-clear" data-i18n="cart.clear">Clear cart</button>
 
-</section>
+        </form>
 
+    </aside>
 
-<!-- Reservation Section -->
-<section class="reservation-section" id="reservation">
-
-    <div class="section-heading">
-        <p class="eyebrow">YOUR TABLE AWAITS</p>
-        <h2>Make a Reservation</h2>
-        <p>Reserve your place for an unforgettable dining experience.</p>
-    </div>
-
-    <form class="reservation-form" id="reservation-form">
-
-        <input type="text" placeholder="Your Name" required>
-
-        <input type="email" placeholder="Your Email" required>
-
-        <input type="date" required>
-
-        <select required>
-            <option value="">Number of Guests</option>
-            <option>1 Person</option>
-            <option>2 People</option>
-            <option>3 People</option>
-            <option>4 People</option>
-            <option>5+ People</option>
-        </select>
-
-        <button type="submit" class="primary-button">
-            Book Now
-        </button>
-
-    </form>
-
-</section>
-
-
-<!-- Footer -->
-<footer id="contact">
-
-    <a href="#" class="logo">LUNA<span>.</span></a>
-
-    <p>Crafting unforgettable moments, one dish at a time.</p>
-
-    <p class="copyright">
-        © 2026 Luna Restaurant. All rights reserved.
-    </p>
-
-</footer>
-
-
-<script src="script.js"></script>
-
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
