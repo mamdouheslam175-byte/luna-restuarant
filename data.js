@@ -10,7 +10,7 @@ const CONFIG = {
        Example (Egypt): "201001234567"
        Leave empty ("") until you have the real number: online booking and
        ordering stay switched off so nothing is sent to a wrong number. */
-    whatsappNumber: "",
+    whatsappNumber: "201010241045",
 
     /* Optional: a form endpoint (e.g. Formspree) that receives reservations
        as JSON. If set, it is used for reservations instead of WhatsApp. */
@@ -56,6 +56,7 @@ const CATEGORIES = [
 const MENU = [
     {
         id: "bruschetta", cat: "starters", price: 8, emoji: "🥖",
+        img: "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=700&q=80",
         name: { en: "Tomato Bruschetta", ar: "بروسكيتا الطماطم" },
         desc: {
             en: "Toasted ciabatta, ripe tomatoes, basil and olive oil.",
@@ -64,6 +65,7 @@ const MENU = [
     },
     {
         id: "caesar", cat: "starters", price: 9, emoji: "🥗",
+        img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",
         name: { en: "Caesar Salad", ar: "سلطة سيزر" },
         desc: {
             en: "Crisp romaine, parmesan, croutons and house dressing.",
@@ -72,6 +74,7 @@ const MENU = [
     },
     {
         id: "soup", cat: "starters", price: 7, emoji: "🥣",
+        img: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80",
         name: { en: "Tomato Basil Soup", ar: "شوربة الطماطم بالريحان" },
         desc: {
             en: "Slow-simmered tomatoes finished with fresh basil.",
@@ -108,6 +111,7 @@ const MENU = [
     },
     {
         id: "salmon", cat: "mains", price: 22, emoji: "🐟",
+        img: "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=700&q=80",
         name: { en: "Grilled Salmon", ar: "سلمون مشوي" },
         desc: {
             en: "Served with lemon butter and seasonal vegetables.",
@@ -116,6 +120,7 @@ const MENU = [
     },
     {
         id: "steak", cat: "mains", price: 28, emoji: "🥩",
+        img: "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=700&q=80",
         name: { en: "Ribeye Steak", ar: "ريب آي ستيك" },
         desc: {
             en: "Charred to order with garlic butter and fries.",
@@ -125,6 +130,7 @@ const MENU = [
 
     {
         id: "tiramisu", cat: "desserts", price: 8, emoji: "🍰",
+        img: "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=700&q=80",
         name: { en: "Tiramisu", ar: "تيراميسو" },
         desc: {
             en: "Espresso-soaked layers with mascarpone cream.",
@@ -133,6 +139,7 @@ const MENU = [
     },
     {
         id: "cheesecake", cat: "desserts", price: 7, emoji: "🍰",
+        img: "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=700&q=80",
         name: { en: "New York Cheesecake", ar: "تشيز كيك نيويورك" },
         desc: {
             en: "Creamy cheesecake with berry compote.",
@@ -141,6 +148,7 @@ const MENU = [
     },
     {
         id: "lava", cat: "desserts", price: 9, emoji: "🍫",
+        img: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80",
         name: { en: "Chocolate Lava Cake", ar: "كيكة الشوكولاتة الذائبة" },
         desc: {
             en: "Warm chocolate cake with a molten center.",
@@ -150,6 +158,7 @@ const MENU = [
 
     {
         id: "lemonade", cat: "drinks", price: 4, emoji: "🍋",
+        img: "https://images.unsplash.com/photo-1513558161293-cdaf765edfd4?auto=format&fit=crop&w=700&q=80",
         name: { en: "Fresh Lemonade", ar: "ليمونادة طازجة" },
         desc: {
             en: "Freshly squeezed with a touch of mint.",
@@ -158,6 +167,7 @@ const MENU = [
     },
     {
         id: "coffee", cat: "drinks", price: 5, emoji: "☕",
+        img: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80",
         name: { en: "Iced Coffee", ar: "آيس كوفي" },
         desc: {
             en: "Cold-brewed coffee over ice.",
@@ -166,6 +176,7 @@ const MENU = [
     },
     {
         id: "orange", cat: "drinks", price: 5, emoji: "🍊",
+        img: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=700&q=80",
         name: { en: "Fresh Orange Juice", ar: "عصير برتقال طازج" },
         desc: {
             en: "Squeezed to order.",

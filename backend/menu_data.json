@@ -1,0 +1,212 @@
+[
+    {
+        "id": "bruschetta",
+        "cat": "starters",
+        "price": 8,
+        "emoji": "🥖",
+        "img": "https://images.unsplash.com/photo-1572695157366-5e585ab2b69f?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Tomato Bruschetta",
+            "ar": "بروسكيتا الطماطم"
+        },
+        "desc": {
+            "en": "Toasted ciabatta, ripe tomatoes, basil and olive oil.",
+            "ar": "خبز تشياباتا محمّص مع طماطم ناضجة وريحان وزيت زيتون."
+        }
+    },
+    {
+        "id": "caesar",
+        "cat": "starters",
+        "price": 9,
+        "emoji": "🥗",
+        "img": "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Caesar Salad",
+            "ar": "سلطة سيزر"
+        },
+        "desc": {
+            "en": "Crisp romaine, parmesan, croutons and house dressing.",
+            "ar": "خس روماني مقرمش وبارميزان وقطع خبز محمّص وصلصة خاصة."
+        }
+    },
+    {
+        "id": "soup",
+        "cat": "starters",
+        "price": 7,
+        "emoji": "🥣",
+        "img": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Tomato Basil Soup",
+            "ar": "شوربة الطماطم بالريحان"
+        },
+        "desc": {
+            "en": "Slow-simmered tomatoes finished with fresh basil.",
+            "ar": "طماطم مطهوّة ببطء مع لمسة ريحان طازج."
+        }
+    },
+    {
+        "id": "pasta",
+        "cat": "mains",
+        "price": 14,
+        "emoji": "🍝",
+        "img": "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Italian Pasta",
+            "ar": "باستا إيطالية"
+        },
+        "desc": {
+            "en": "Fresh pasta with a rich creamy sauce.",
+            "ar": "باستا طازجة مع صلصة كريمية غنية."
+        }
+    },
+    {
+        "id": "burger",
+        "cat": "mains",
+        "price": 12,
+        "emoji": "🍔",
+        "img": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Classic Burger",
+            "ar": "برجر كلاسيك"
+        },
+        "desc": {
+            "en": "Premium beef with fresh ingredients.",
+            "ar": "لحم بقري فاخر مع مكونات طازجة."
+        }
+    },
+    {
+        "id": "pizza",
+        "cat": "mains",
+        "price": 16,
+        "emoji": "🍕",
+        "img": "https://images.unsplash.com/photo-1513104890138-7c749659a591?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Italian Pizza",
+            "ar": "بيتزا إيطالية"
+        },
+        "desc": {
+            "en": "Authentic pizza baked to perfection.",
+            "ar": "بيتزا أصلية مخبوزة بإتقان."
+        }
+    },
+    {
+        "id": "salmon",
+        "cat": "mains",
+        "price": 22,
+        "emoji": "🐟",
+        "img": "https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Grilled Salmon",
+            "ar": "سلمون مشوي"
+        },
+        "desc": {
+            "en": "Served with lemon butter and seasonal vegetables.",
+            "ar": "يُقدَّم مع زبدة الليمون وخضار الموسم."
+        }
+    },
+    {
+        "id": "steak",
+        "cat": "mains",
+        "price": 28,
+        "emoji": "🥩",
+        "img": "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Ribeye Steak",
+            "ar": "ريب آي ستيك"
+        },
+        "desc": {
+            "en": "Charred to order with garlic butter and fries.",
+            "ar": "مشوي حسب الطلب مع زبدة الثوم والبطاطس."
+        }
+    },
+    {
+        "id": "tiramisu",
+        "cat": "desserts",
+        "price": 8,
+        "emoji": "🍰",
+        "img": "https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Tiramisu",
+            "ar": "تيراميسو"
+        },
+        "desc": {
+            "en": "Espresso-soaked layers with mascarpone cream.",
+            "ar": "طبقات مبلّلة بالإسبريسو مع كريمة الماسكاربون."
+        }
+    },
+    {
+        "id": "cheesecake",
+        "cat": "desserts",
+        "price": 7,
+        "emoji": "🍰",
+        "img": "https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "New York Cheesecake",
+            "ar": "تشيز كيك نيويورك"
+        },
+        "desc": {
+            "en": "Creamy cheesecake with berry compote.",
+            "ar": "تشيز كيك كريمي مع صلصة التوت."
+        }
+    },
+    {
+        "id": "lava",
+        "cat": "desserts",
+        "price": 9,
+        "emoji": "🍫",
+        "img": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Chocolate Lava Cake",
+            "ar": "كيكة الشوكولاتة الذائبة"
+        },
+        "desc": {
+            "en": "Warm chocolate cake with a molten center.",
+            "ar": "كيكة شوكولاتة دافئة بقلب ذائب."
+        }
+    },
+    {
+        "id": "lemonade",
+        "cat": "drinks",
+        "price": 4,
+        "emoji": "🍋",
+        "img": "https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Fresh Lemonade",
+            "ar": "ليمونادة طازجة"
+        },
+        "desc": {
+            "en": "Freshly squeezed with a touch of mint.",
+            "ar": "عصير ليمون طازج مع لمسة نعناع."
+        }
+    },
+    {
+        "id": "coffee",
+        "cat": "drinks",
+        "price": 5,
+        "emoji": "☕",
+        "img": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Iced Coffee",
+            "ar": "آيس كوفي"
+        },
+        "desc": {
+            "en": "Cold-brewed coffee over ice.",
+            "ar": "قهوة مخمّرة على البارد مع الثلج."
+        }
+    },
+    {
+        "id": "orange",
+        "cat": "drinks",
+        "price": 5,
+        "emoji": "🍊",
+        "img": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=700&q=80",
+        "name": {
+            "en": "Fresh Orange Juice",
+            "ar": "عصير برتقال طازج"
+        },
+        "desc": {
+            "en": "Squeezed to order.",
+            "ar": "يُعصر عند الطلب."
+        }
+    }
+]

@@ -243,6 +243,32 @@
 
     </aside>
 
+
+
+    <!-- Food Details Modal -->
+    <div class="food-modal" id="foodModal">
+        <div class="food-modal-content">
+            <button class="close-modal" id="closeFoodModal">&times;</button>
+
+            <img id="modalFoodImg" src="" alt="Food">
+
+            <div class="food-modal-info">
+                <h2 id="modalFoodName"></h2>
+                <p id="modalFoodDesc"></p>
+                <h3 id="modalFoodPrice"></h3>
+
+                <div class="quantity-control">
+                    <button id="decreaseQty">-</button>
+                    <span id="foodQty">1</span>
+                    <button id="increaseQty">+</button>
+                </div>
+
+                <button id="addFoodToCart">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
+    </div>
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>

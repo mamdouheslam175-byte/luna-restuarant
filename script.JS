@@ -22,8 +22,58 @@
         });
     }
 
+
+    let MENU = [];
     const MENU_BY_ID = {};
-    MENU.forEach(function (item) { MENU_BY_ID[item.id] = item; });
+
+    function getCookie(name) {
+        let cookieValue = null;
+
+        if (document.cookie && document.cookie !== "") {
+            const cookies = document.cookie.split(";");
+
+            for (let cookie of cookies) {
+                cookie = cookie.trim();
+
+                if (cookie.startsWith(name + "=")) {
+                    cookieValue = decodeURIComponent(
+                        cookie.substring(name.length + 1)
+                    );
+                    break;
+                }
+            }
+        }
+
+        return cookieValue;
+    }
+
+    async function loadMenuFromAPI() {
+        try {
+            const response = await fetch("http://127.0.0.1:8000/api/menu/", {
+                credentials: "include"
+            });
+            if (!response.ok) {
+                throw new Error("Failed to load menu");
+            }
+
+            MENU = await response.json();
+
+            Object.keys(MENU_BY_ID).forEach(function (key) {
+                delete MENU_BY_ID[key];
+            });
+            MENU.forEach(function (item) {
+                MENU_BY_ID[item.id] = item;
+            });
+
+            renderTabs();
+            renderMenu();
+
+        } catch (error) {
+            console.error("Menu API Error:", error);
+            menuGrid.innerHTML = '<p class="menu-empty">Unable to load menu.</p>';
+        }
+    }
+
 
     /* ---------- elements ---------- */
 
@@ -212,12 +262,9 @@
         const query = menuSearch.value.trim().toLocaleLowerCase();
 
         const items = MENU.filter(function (item) {
-
-            // Filter by category
             const categoryMatch =
                 activeCat === "all" || item.cat === activeCat;
 
-            // Search in both Arabic and English
             const searchableText = [
                 item.name.en,
                 item.name.ar,
@@ -241,26 +288,25 @@
 
             const media = item.img
                 ? '<div class="menu-card-media"><img src="' +
-                esc(item.img) +
-                '" alt="' +
-                esc(name) +
-                '" loading="lazy"></div>'
+                esc(item.img) + '" alt="' +
+                esc(name) + '" loading="lazy"></div>'
                 : '<div class="menu-card-media placeholder" aria-hidden="true">' +
-                esc(item.emoji || "🍽️") +
-                "</div>";
+                esc(item.emoji || "🍽️") + "</div>";
 
-            return '<article class="menu-card">' + media +
+            return '<article class="menu-card" data-details="' +
+                esc(item.id) + '">' + media +
                 '<div class="menu-card-content">' +
                 "<h3>" + esc(name) + "</h3>" +
                 "<p>" + esc(pick(item.desc)) + "</p>" +
                 '<div class="menu-card-footer">' +
                 '<span class="price">' + esc(formatPrice(item.price)) + "</span>" +
                 '<button type="button" class="add-button" data-add="' +
-                esc(item.id) +
-                '">' + esc(t("menu.add")) + "</button>" +
+                esc(item.id) + '">' + esc(t("menu.add")) + "</button>" +
                 "</div></div></article>";
         }).join("");
     }
+
+
 
     menuTabs.addEventListener("click", function (e) {
         const tab = e.target.closest("[data-cat]");
@@ -286,6 +332,78 @@
             if (button.isConnected) button.textContent = t("menu.add");
         }, 900);
     });
+
+    // Food Details Modal
+    let selectedFood = null;
+    let foodQuantity = 1;
+
+    const foodModal = document.getElementById("foodModal");
+
+    menuGrid.addEventListener("click", function (e) {
+        if (e.target.closest("[data-add]")) return;
+
+        const card = e.target.closest("[data-details]");
+        if (!card) return;
+
+        selectedFood = MENU.find(function (item) {
+            return item.id === card.dataset.details;
+        });
+
+        if (!selectedFood) return;
+
+        foodQuantity = 1;
+
+        document.getElementById("modalFoodImg").src =
+            selectedFood.img || "";
+
+        document.getElementById("modalFoodName").textContent =
+            pick(selectedFood.name);
+
+        document.getElementById("modalFoodDesc").textContent =
+            pick(selectedFood.desc);
+
+        document.getElementById("modalFoodPrice").textContent =
+            formatPrice(selectedFood.price);
+
+        document.getElementById("foodQty").textContent =
+            foodQuantity;
+
+        foodModal.classList.add("active");
+    });
+
+    // Close Modal
+    document.getElementById("closeFoodModal").addEventListener("click", function () {
+        foodModal.classList.remove("active");
+    });
+
+    foodModal.addEventListener("click", function (e) {
+        if (e.target === foodModal) {
+            foodModal.classList.remove("active");
+        }
+    });
+
+    // Quantity Controls
+    document.getElementById("increaseQty").addEventListener("click", function () {
+        foodQuantity++;
+        document.getElementById("foodQty").textContent = foodQuantity;
+    });
+
+    document.getElementById("decreaseQty").addEventListener("click", function () {
+        if (foodQuantity > 1) {
+            foodQuantity--;
+            document.getElementById("foodQty").textContent = foodQuantity;
+        }
+    });
+
+    // Add to Cart
+    document.getElementById("addFoodToCart").addEventListener("click", function () {
+        if (!selectedFood) return;
+
+        changeQty(selectedFood.id, foodQuantity);
+
+        foodModal.classList.remove("active");
+    });
+
 
     /* ---------- cart ---------- */
 
@@ -313,6 +431,7 @@
         }
     }
 
+
     function renderCart() {
         const ids = Object.keys(cart);
         const count = cartCount();
@@ -321,21 +440,34 @@
         cartCountEl.hidden = count === 0;
 
         if (!ids.length) {
-            cartItems.innerHTML = '<li class="cart-empty">' + esc(t("cart.empty")) + "</li>";
+            cartItems.innerHTML =
+                '<li class="cart-empty">' + esc(t("cart.empty")) + "</li>";
         } else {
             cartItems.innerHTML = ids.map(function (id) {
                 const item = MENU_BY_ID[id];
                 const qty = cart[id];
+
+                const image = item.img
+                    ? '<img class="cart-item-image" src="' +
+                    esc(item.img) + '" alt="' +
+                    esc(pick(item.name)) + '" loading="lazy">'
+                    : '<span class="cart-item-emoji">' +
+                    esc(item.emoji || "🍽️") + '</span>';
+
                 return '<li class="cart-item">' +
-                    "<div>" +
-                    '<p class="cart-item-name">' + esc(pick(item.name)) + "</p>" +
-                    '<p class="cart-item-price">' + esc(formatPrice(item.price * qty)) + "</p>" +
-                    "</div>" +
+                    image +
+                    '<div class="cart-item-details">' +
+                    '<p class="cart-item-name">' +
+                    esc(pick(item.name)) + '</p>' +
+                    '<p class="cart-item-price">' +
+                    esc(formatPrice(item.price * qty)) + '</p>' +
                     '<div class="qty">' +
-                    '<button type="button" data-act="dec" data-id="' + esc(id) + '" aria-label="' + esc(t("cart.dec")) + '">−</button>' +
-                    "<span>" + esc(qty.toLocaleString(locale())) + "</span>" +
-                    '<button type="button" data-act="inc" data-id="' + esc(id) + '" aria-label="' + esc(t("cart.inc")) + '">+</button>' +
-                    "</div></li>";
+                    '<button type="button" data-act="dec" data-id="' +
+                    esc(id) + '">−</button>' +
+                    '<span>' + esc(qty.toLocaleString(locale())) + '</span>' +
+                    '<button type="button" data-act="inc" data-id="' +
+                    esc(id) + '">+</button>' +
+                    '</div></div></li>';
             }).join("");
         }
 
@@ -343,6 +475,7 @@
         checkoutButton.disabled = !ids.length;
         cartClear.hidden = !ids.length;
     }
+
 
     cartItems.addEventListener("click", function (e) {
         const button = e.target.closest("[data-act]");
@@ -401,8 +534,43 @@
         }
     });
 
-    checkoutForm.addEventListener("submit", function (e) {
+    // Save and restore customer information
+    const customerFields = ["name", "phone", "note"];
+
+    function loadCustomerInfo() {
+        customerFields.forEach(function (field) {
+            const input = checkoutForm.elements[field];
+            const savedValue = localStorage.getItem("luna_customer_" + field);
+
+            if (savedValue !== null) {
+                input.value = savedValue;
+            }
+        });
+    }
+
+    function saveCustomerInfo() {
+        customerFields.forEach(function (field) {
+            const input = checkoutForm.elements[field];
+
+            localStorage.setItem(
+                "luna_customer_" + field,
+                input.value
+            );
+        });
+    }
+
+    loadCustomerInfo();
+
+
+    customerFields.forEach(function (field) {
+        checkoutForm.elements[field].addEventListener("input", saveCustomerInfo);
+    });
+
+
+
+    checkoutForm.addEventListener("submit", async function (e) {
         e.preventDefault();
+
         if (!Object.keys(cart).length) return;
 
         if (!CONFIG.whatsappNumber) {
@@ -411,23 +579,99 @@
         }
 
         const form = new FormData(checkoutForm);
+
+        const name = String(form.get("name")).trim();
+        const phone = String(form.get("phone")).trim();
+        const note = String(form.get("note")).trim();
+
+        // تجهيز بيانات الطلب لإرسالها إلى Django
+        const orderData = {
+            name: name,
+            phone: phone,
+            note: note,
+            items: Object.keys(cart).map(function (id) {
+                return {
+                    id: id,
+                    quantity: cart[id]
+                };
+            })
+        };
+
+        // تجهيز رسالة WhatsApp
         const lines = [
             "*" + t("msg.orderTitle") + "*",
-            t("msg.name") + ": " + String(form.get("name")).trim(),
-            t("msg.phone") + ": " + String(form.get("phone")).trim()
+            t("msg.name") + ": " + name,
+            t("msg.phone") + ": " + phone
         ];
-        const note = String(form.get("note")).trim();
+
         if (note) lines.push(t("msg.note") + ": " + note);
         lines.push("");
 
         Object.keys(cart).forEach(function (id) {
             const item = MENU_BY_ID[id];
-            lines.push("• " + cart[id] + " × " + pick(item.name) + " — " + formatPrice(item.price * cart[id]));
+
+            lines.push(
+                "• " + cart[id] + " × " +
+                pick(item.name) + " — " +
+                formatPrice(item.price * cart[id])
+            );
         });
+
         lines.push("", t("msg.total") + ": " + formatPrice(cartTotal()));
 
-        window.open(whatsappUrl(lines.join("\n")), "_blank", "noopener");
-        setStatus(cartStatus, t("order.opening"), "ok");
+        // فتح نافذة WhatsApp بشكل مبدئي لتجنب منع النوافذ المنبثقة
+        const whatsappWindow = window.open("about:blank", "_blank");
+
+        try {
+            setStatus(cartStatus, "Saving your order...", "ok");
+
+            // إرسال الطلب إلى Django
+            const response = await fetch(
+                "http://127.0.0.1:8000/api/orders/",
+                {
+                    method: "POST",
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "X-CSRFToken": getCookie("csrftoken")
+                    },
+                    body: JSON.stringify(orderData)
+                }
+            );
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || "Failed to save order");
+            }
+
+            // فتح WhatsApp بعد نجاح حفظ الطلب
+            const whatsappLink = whatsappUrl(lines.join("\n"));
+
+            if (whatsappWindow) {
+                whatsappWindow.location.href = whatsappLink;
+            } else {
+                window.location.href = whatsappLink;
+            }
+
+            setStatus(cartStatus, "Order saved successfully!", "ok");
+
+            console.log("Saved Order:", result);
+
+        } catch (error) {
+            console.error("Order Error:", error);
+
+            if (whatsappWindow) {
+                whatsappWindow.close();
+            }
+
+            setStatus(
+                cartStatus,
+                "Could not save your order. Please try again.",
+                "error"
+            );
+        }
     });
 
     /* ---------- reservation form ---------- */
@@ -562,5 +806,5 @@
     /* ---------- start ---------- */
 
     applyLang(lang);
-
+    loadMenuFromAPI();
 })();
